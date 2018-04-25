@@ -1,0 +1,40 @@
+var express = require('express');
+var path = require('path');
+var bodyParser = require('body-parser');
+var mongoose = require('mongoose');
+var jwt = require('jsonwebtoken');
+
+var config = require('./config');
+
+mongoose.connect(config.database);
+
+mongoose.Promise = global.Promise;
+
+// instantiate express app
+var app = express();
+
+// set the superSecret key in our app which we will use  to sign our jwts
+app.set('superSecret', config.secret);
+
+// instantiate bodyParser middleware so we can get fields from post requests via req.body.fieldName
+app.use(bodyParser.urlencoded({ extended: true }));
+
+// instatiate bodyParser to also handle requests with JSON and not just form data
+app.use(bodyParser.json());
+
+// static directory setup
+app.use(express.static(path.join(__dirname, '..', 'public')));
+
+
+
+// app.get('*', (req, res) => {
+//   res.sendFile(path.join(__dirname, '..', 'public', 'index.html'));
+// });
+
+// set up app to listen on port 3000  or any env port specified
+app.listen(process.env.PORT || 3000, () => {
+  console.log('listening on ' + (process.env.PORT || 3000));
+});
+
+// export app for testing purposes
+module.exports = app;
