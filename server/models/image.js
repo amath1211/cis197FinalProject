@@ -24,9 +24,9 @@ var imageSchema = new Schema ({
 imageSchema.statics.createImage = function (currentUserId, image, caption) {
   var newImage = new this();
   newImage.owner = currentUserId;
-  newImage.image = {data: image.data, contentType: image.contentType};
+  newImage.image = { data: image.data, contentType: image.contentType };
   newImage.likes = [];
-  newImage.caption = caption;
+  newImage.caption = { text: caption, postedBy: currentUserId };
   return newImage.save()
     .then(function (savedImage) {
       return savedImage.getImageInfo(currentUserId);
