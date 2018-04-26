@@ -26,3 +26,10 @@ class NavBar extends Component {
       </nav>
   )};
 }
+
+const mapStateToProps = (state) => {
+  let { authReducer } = state;
+  return authReducer;
+};
+
+export default connect(mapStateToProps, null)(NavBar);

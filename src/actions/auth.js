@@ -1,9 +1,3 @@
-// use this file as a reference
-// for implementing your other files
-// explanation:
-//
-//
-// Up here we're just setting some constants to refer to our actions
 export const LOGIN_FUL = 'LOGIN_FUL';
 export const LOGIN_REJ = 'LOGIN_REJ';
 
@@ -12,7 +6,6 @@ export const REGISTER_REJ = 'REGISTER_REJ';
 
 export const LOGOUT_FUL = 'LOGOUT_FUL';
 
-// in this section, we're defining our synchronous action creators
 
 function receiveLogin(token) {
   return {
@@ -49,7 +42,6 @@ function registerError(message) {
 
 
 export function logOut() {
-  // clear the token we have stored locally
   localStorage.removeItem('token');
   return {
     type: LOGOUT_FUL,
@@ -61,22 +53,19 @@ export function logOut() {
 
 
 export function loginUser(creds) {
-  // config is what 'fetch' will use to configure its request
   let config = {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-    }, // this line is important, if this content-type is not set it wont work
+    },
     body: JSON.stringify(creds),
   };
   return dispatch => fetch('/account/signin', config)
     .then(response => response.json())
     .then((res) => {
       if (!res.success) {
-        // ie we got a valid response, but the response says that this wasn't a successful login
         return Promise.reject(res.message);
       } else {
-        // things are all good, we set a token locally
         localStorage.setItem('token', res.token);
         // tell our store that login has been done
         dispatch(receiveLogin(res.token));
@@ -91,7 +80,7 @@ export function registerUser(info) {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-    }, // this line is important, if this content-type is not set it wont work
+    },
     body: JSON.stringify(info),
   };
   return dispatch => fetch('/account/signup', config)

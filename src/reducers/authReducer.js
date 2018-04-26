@@ -9,15 +9,15 @@ import {
 const auth = (initialState={ isAuthenticated: localStorage.getItem('token')  ? true : false }, action) => {
   switch(action.type) {
     case 'LOGIN_FUL':
-      return { isAuthenticated: true }
+      return this.setState({isAuthenticated: true});
     case 'REGISTER_FUL':
-      return { isAuthenticated: true }
+      return this.setState({isAuthenticated: true});
     case 'LOGOUT_FUL':
-      return { isAuthenticated: false }
+      return this.setState({isAuthenticated: false});
     case 'LOGIN_REJ':
-      return { isAuthenticated: false }
+      return this.setState({isAuthenticated: false});
     case 'REGISTER_REJ':
-      return { isAuthenticated: false }
+      return this.setState({isAuthenticated: false});
     default:
       return state
   }

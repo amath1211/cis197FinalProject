@@ -20,3 +20,5 @@ class Profile extends Component {
     );
   }
 }
+
+export default connect(Profile);

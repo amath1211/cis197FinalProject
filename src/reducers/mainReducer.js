@@ -6,7 +6,7 @@ import authReducer from './authReducer';
 // import commentReducer from './commentReducer';
 
 var imageApp = combineReducers ({
-  authReducer: authReducer,
+  authReducer: authReducer(this.props),
   // timelineReducer: timelineReducer,
   // imageReducer: imageReducer,
   // profileReducer: profileReducer,
