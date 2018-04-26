@@ -6,9 +6,9 @@ import {
 import Signin from './Signin';
 import Signup from './Signup';
 import Logout from './Logout';
-// import Timeline from './Timeline';
-// import NavBar from './NavBar';
-// import Profile from './Profile';
+import Timeline from './Timeline';
+import NavBar from './NavBar';
+import Profile from './Profile';
 import AuthHOC from './AuthHOC';
 
 class App extends Component {
@@ -27,6 +27,7 @@ class App extends Component {
           <Route path="/timeline" component={Timeline}/>
           <Route path="/profile/:id?" component={AuthHOC(Profile)}/>
           <Route component={Signin}/>
+          <Route component={Signup}/>
         </Switch>
       </div>
     )
